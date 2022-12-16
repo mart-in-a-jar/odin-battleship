@@ -9,7 +9,7 @@ describe("Ship generation", () => {
         expect(ship.name).toBe("Aircraft carrier");
         expect(ship.length).toBe(5);
         expect(ship.hits).toBe(0);
-        expect(ship.isSunk()).toBeFalsy();
+        expect(ship.isSunk()).toBe(false);
     });
     test("Sink ship", () => {
         ship.hit();
@@ -17,6 +17,6 @@ describe("Ship generation", () => {
         ship.hit();
         ship.hit();
         ship.hit();
-        expect(ship.isSunk()).toBeTruthy();
+        expect(ship.isSunk()).toBe(true);
     });
 });
