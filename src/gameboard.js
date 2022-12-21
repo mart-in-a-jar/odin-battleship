@@ -21,8 +21,17 @@ function GameBoard() {
     };
 
     this.placeRandomly = (ships) => {
-        //
-    }
+        for (let ship of ships) {
+            while (!ship.isPlaced) {
+                const randomX = Math.floor(Math.random() * 10);
+                const randomY = Math.floor(Math.random() * 10);
+                const randomDirection =
+                    Math.random() < 0.5 ? "horizontal" : "vertical";
+                this.placeShip(ship, randomX, randomY, randomDirection);
+            }
+        }
+        this.log();
+    };
 
     this.receiveAttack = (x, y) => {
         const field = board[x][y];
@@ -67,7 +76,9 @@ function GameBoard() {
         for (let i = 0; i < 10; i++) {
             let string = "|";
             for (let j = 0; j < 10; j++) {
-                string += ` ${board[j][i].ship?.name || "     "} |`;
+                string += ` ${
+                    board[j][i].ship?.name.slice(0, 7) || "       "
+                } |`;
             }
             console.log(string);
             // console.log("-".repeat(100))

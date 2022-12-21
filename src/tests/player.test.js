@@ -49,4 +49,18 @@ describe("Player tests", () => {
         human.shoot(computer.board, 5, 5);
         expect(computer.board.fields[5][5].isHit).toBe(true);
     });
+
+    test("Place ships randomly", () => {
+        computer.placeShipsRandomly();
+        expect(computer.ships.every((ship) => ship.isPlaced)).toBe(true);
+        let shipsFields = 0;
+        for (let i = 0; i < 10; i++) {
+            for (let j = 0; j < 10; j++) {
+                if (computer.board.fields[i][j].ship) {
+                    shipsFields++;
+                }
+            }
+        }
+        expect(shipsFields).toBe(15);
+    });
 });
