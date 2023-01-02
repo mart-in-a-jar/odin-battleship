@@ -1,5 +1,3 @@
-import Ship from "./ship";
-
 function GameBoard() {
     const board = [];
     for (let i = 0; i < 10; i++) {
@@ -30,7 +28,6 @@ function GameBoard() {
                 this.placeShip(ship, randomX, randomY, randomDirection);
             }
         }
-        this.log();
     };
 
     this.receiveAttack = (x, y) => {
@@ -88,8 +85,3 @@ function GameBoard() {
 }
 
 export default GameBoard;
-
-let a = new GameBoard();
-a.placeShip(new Ship(5), 0, 0, "vertical");
-// console.log(a.fields[0][9]);
-// a.log();
