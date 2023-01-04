@@ -129,4 +129,4 @@ function peekBoats(debug) {
     }
 }
 
-export { initialize, peekBoats };
+export { initialize };
