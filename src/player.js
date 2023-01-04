@@ -19,9 +19,11 @@ function Player(name, computer = false) {
             while (!validMove) {
                 const randomX = Math.floor(Math.random() * 10);
                 const randomY = Math.floor(Math.random() * 10);
-                if (board.receiveAttack(randomX, randomY) !== false)
+                const shot = board.receiveAttack(randomX, randomY);
+                if (shot !== false) {
                     validMove = true;
-                return { randomX, randomY };
+                    return { x: randomX, y: randomY, result: shot };
+                }
             }
         };
     } else {

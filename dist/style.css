@@ -1,8 +1,15 @@
-.board.wrapper {
+.boards {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    position: relative;
+}
+
+.board {
     display: grid;
     grid-template-columns: repeat(10, auto);
-    gap: 5px;
     justify-content: center;
+    border: 1px solid black;
 }
 
 .board.field {
@@ -12,4 +19,62 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 5px;
+}
+
+.computer .field {
+    cursor: crosshair;
+}
+
+.computer .field:hover {
+    background-color: rgba(197, 197, 197, 0.438);
+}
+
+.computer .field.hit,
+.player .field.miss {
+    background-color: green;
+}
+
+.computer .field.miss,
+.player .field.hit {
+    background-color: red;
+}
+
+.field.miss,
+.field.hit {
+    cursor: unset;
+}
+
+.game-over {
+    pointer-events: none;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px;
+    font-weight: 600;
+    color: white;
+    background-color: rgb(137, 137, 226);
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+}
+
+button:hover {
+    outline: 1px solid blue;
+}
+
+.result {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    font-size: 200px;
+    background-color: rgba(240, 248, 255, 0.651);
 }

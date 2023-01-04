@@ -1,1 +1,3 @@
-import { makeBoard } from "./gui";
+import { initialize } from "./gui";
+
+initialize();
