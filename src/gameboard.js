@@ -43,11 +43,11 @@ function GameBoard() {
 
     this.gameOver = () => {
         const unsunkShips = board.some((row) => {
-            for (let field of row) {
+            return row.some((field) => {
                 if (field.ship) {
                     return !field.ship.isSunk();
                 }
-            }
+            });
         });
         if (unsunkShips) return false;
         return true;
