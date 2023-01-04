@@ -21,11 +21,12 @@ function Player(name, computer = false) {
                 const randomY = Math.floor(Math.random() * 10);
                 if (board.receiveAttack(randomX, randomY) !== false)
                     validMove = true;
+                return { randomX, randomY };
             }
         };
     } else {
         this.shoot = (board, x, y) => {
-            board.receiveAttack(x, y);
+            return board.receiveAttack(x, y);
         };
     }
 
