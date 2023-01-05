@@ -10,6 +10,8 @@
     grid-template-columns: repeat(10, auto);
     justify-content: center;
     border: 1px solid black;
+    background: url(./img/ocean.jpg) center;
+    user-select: none;
 }
 
 .board.field {
@@ -20,24 +22,39 @@
     justify-content: center;
     align-items: center;
     padding: 5px;
+    font-size: 3rem;
+    font-weight: 800;
+    transition: 100ms ease-in-out;
+}
+
+.field.ship {
+    background: url(./img/ship.svg) no-repeat center transparent;
+}
+
+.board::before {
+    position: absolute;
+    top: -21px;
+    font-family: sans-serif;
+}
+
+.computer::before {
+    content: "Computer";
+}
+
+.player::before {
+    content: "Player";
 }
 
 .computer .field {
     cursor: crosshair;
 }
 
-.computer .field:hover {
-    background-color: rgba(197, 197, 197, 0.438);
+.field.hit {
+    color: rgba(255, 0, 0, 0.534);
 }
 
-.computer .field.hit,
-.player .field.miss {
-    background-color: green;
-}
-
-.computer .field.miss,
-.player .field.hit {
-    background-color: red;
+.field.miss {
+    color: rgba(0, 0, 0, 0.473);
 }
 
 .field.miss,

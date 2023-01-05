@@ -22,9 +22,6 @@ function drawBoard(board, player) {
     wrapper.classList.add("board", player);
     for (let field of board) {
         wrapper.appendChild(field);
-
-        //
-        // field.textContent = `${field.dataset.xCoord},${field.dataset.yCoord}`;
     }
     document.querySelector(".boards").appendChild(wrapper);
     return wrapper;
@@ -82,9 +79,11 @@ function handleGameOver(result) {
 
 function styleShots(field, result) {
     if (result === "hit") {
-        field.classList.add("hit");
+        field.classList.add("hit", "ship");
+        field.innerHTML = "&times;";
     } else if (result === "miss") {
         field.classList.add("miss");
+        field.innerHTML = "&#9679;";
     }
 }
 
@@ -100,6 +99,8 @@ function initialize() {
     for (let field of document.querySelectorAll(".field")) {
         field.classList.remove("hit");
         field.classList.remove("miss");
+        field.classList.remove("ship");
+        field.innerHTML = "";
     }
     computerBoard.classList.remove("game-over");
     resultText.textContent = "";
@@ -117,16 +118,16 @@ function peekBoats(debug) {
                     field.dataset.yCoord
                 ].ship
             ) {
-                field.textContent = "X";
-            } else field.textContent = "";
+                field.classList.add("ship");
+            } else field.classList.remove("ship");
         }
     }
     for (let field of playerFieldIcons) {
         if (
             player.board.fields[field.dataset.xCoord][field.dataset.yCoord].ship
         ) {
-            field.textContent = "X";
-        } else field.textContent = "";
+            field.classList.add("ship");
+        } else field.classList.remove("ship");
     }
 }
 
