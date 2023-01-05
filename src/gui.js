@@ -103,7 +103,8 @@ function initialize() {
     }
     computerBoard.classList.remove("game-over");
     resultText.textContent = "";
-    peekBoats("debug");
+    // peekBoats("debug");
+    peekBoats();
 }
 
 restartButton.addEventListener("click", initialize);
