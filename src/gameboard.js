@@ -31,6 +31,7 @@ function GameBoard() {
     };
 
     this.receiveAttack = (x, y) => {
+        if (x < 0 || x > 9 || y < 0 || y > 9) return false;
         const field = board[x][y];
         if (field.isHit) return false;
         field.isHit = true;

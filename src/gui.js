@@ -62,7 +62,7 @@ function handleShot(field) {
 }
 
 function computerShoot() {
-    const result = computer.randomPlay(player.board);
+    const result = computer.shoot(player.board);
     const field = document.querySelector(
         `.player [data-x-coord="${result.x}"][data-y-coord="${result.y}"]`
     );
