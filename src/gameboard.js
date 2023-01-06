@@ -67,7 +67,43 @@ function GameBoard() {
                 if (board[x][y + i].ship) return false;
             }
         }
+        if (checkAround(ship, x, y, direction) === false) return false;
         return true;
+        function checkAround(ship, x, y, direction) {
+            if (direction === "horizontal") {
+                if (
+                    (x > 0 && board[x - 1][y].ship) ||
+                    (x + ship.length < 10 && board[x + ship.length][y].ship)
+                )
+                    return false;
+                for (let i = -1; i <= ship.length; i++) {
+                    if (x + i >= 0 && x + i < 10) {
+                        if (
+                            (y - 1 >= 0 && board[x + i][y - 1].ship) ||
+                            (y + 1 < 10 && board[x + i][y + 1].ship)
+                        )
+                            return false;
+                    }
+                }
+            } else if (direction === "vertical") {
+                if (
+                    (y > 0 && board[x][y - 1].ship) ||
+                    (y + ship.length < 10 && board[x][y + ship.length].ship)
+                )
+                    return false;
+                for (let i = -1; i <= ship.length; i++) {
+                    if (y + i >= 0 && y + i < 10) {
+                        if (
+                            (x - 1 >= 0 && board[x - 1][y + i].ship) ||
+                            (x + 1 < 10 && board[x + 1][y + i].ship)
+                        )
+                            return false;
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 
     this.log = () => {
