@@ -90,40 +90,20 @@ function Player(name, computer = false) {
                     if (shot === "hit") {
                         _lastHit.x = nextShot.x;
                         _lastHit.y = nextShot.y;
+                        _directionSwitched = false;
+                    } else if (shot === false) {
+                        if (!_directionSwitched) {
+                            switchDirection();
+                            return this.shoot(board);
+                        }
+                        return _randomShot();
                     } else {
                         // switch direction
                         if (_firstHit.x !== null && _firstHit.y !== null) {
-                            _lastHit.x = _firstHit.x;
-                            _lastHit.y = _firstHit.y;
-                            switch (_hitDirection) {
-                                case "right":
-                                    _hitDirection = "left";
-                                    break;
-                                case "up":
-                                    _hitDirection = "down";
-                                    break;
-                                case "left":
-                                    _hitDirection = "right";
-                                    break;
-                                case "down":
-                                    _hitDirection = "up";
-                                    break;
-                                default:
-                                    break;
-                            }
-                            _firstHit.x = null;
-                            _firstHit.y = null;
-                            _directionSwitched = true;
+                            switchDirection();
                         } else {
                             _lastHit.x = null;
                             _lastHit.y = null;
-                        }
-                        if (shot === false) {
-                            if (!_directionSwitched) {
-                                // switch direction and shoot again
-                            /* } else { */
-                                return _randomShot();
-                            }
                         }
                     }
 
@@ -136,6 +116,29 @@ function Player(name, computer = false) {
             } else {
                 return _randomShot();
             }
+            function switchDirection() {
+                switch (_hitDirection) {
+                    case "right":
+                        _hitDirection = "left";
+                        break;
+                    case "up":
+                        _hitDirection = "down";
+                        break;
+                    case "left":
+                        _hitDirection = "right";
+                        break;
+                    case "down":
+                        _hitDirection = "up";
+                        break;
+                    default:
+                        break;
+                }
+                _lastHit.x = _firstHit.x;
+                _lastHit.y = _firstHit.y;
+                _firstHit.x = null;
+                _firstHit.y = null;
+                _directionSwitched = true;
+            }
             function _randomShot() {
                 _hitDirection = null;
                 const shot = randomPlay(board);
@@ -144,10 +147,7 @@ function Player(name, computer = false) {
                     _firstHit.y = shot.y;
                     _lastHit.x = shot.x;
                     _lastHit.y = shot.y;
-                } /* else if (shot.result === "miss") {
-                    _lastHit.x = null;
-                    _lastHit.y = null;
-                } */
+                }
                 return shot;
             }
         };
